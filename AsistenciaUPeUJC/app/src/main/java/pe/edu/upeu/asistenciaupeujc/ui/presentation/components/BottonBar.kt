@@ -19,6 +19,8 @@ fun BottomNavigationBar(navController: NavHostController) {
         Destinations.Pantalla1,
         Destinations.Pantalla2,
         Destinations.Pantalla3,
+        Destinations.Pantalla4,
+        Destinations.Pantalla5,
     )
     var selectedItem by remember { mutableStateOf(0) }
     var currentRoute by remember { mutableStateOf(Destinations.Pantalla1.route) }

@@ -79,7 +79,7 @@ fun SmallFloatingActionButtonRow(
         }
         SmallFloatingActionButton(
             modifier = Modifier
-                .padding(4.dp),
+                .padding(1.dp),
             onClick = { item.onFabItemClicked() },
             elevation = FloatingActionButtonDefaults.elevation(
                 defaultElevation = 2.dp,
