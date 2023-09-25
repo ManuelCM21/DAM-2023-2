@@ -18,7 +18,9 @@ import pe.edu.upeu.asistencia.exceptions.AppException;
 
 import pe.edu.upeu.asistencia.exceptions.ResourceNotFoundException;
 import pe.edu.upeu.asistencia.mappers.MaterialesxMapper;
+import pe.edu.upeu.asistencia.models.Actividad;
 import pe.edu.upeu.asistencia.models.Materialesx;
+import pe.edu.upeu.asistencia.repositories.ActividadRepository;
 import pe.edu.upeu.asistencia.repositories.MaterialesxRepository;
 
 /**
@@ -42,7 +44,7 @@ public class MaterialesxServiceImp implements MaterialesxService {
     @Override
     public Materialesx save(MaterialesxDto.MaterialesxCrearDto materialesx) {
 
-        Materialesx matEnt=materialesxMapper.materialesxCrearDtoToMaterialesx(materialesx);
+        Materialesx matEnt = materialesxMapper.materialesxCrearDtoToMaterialesx(materialesx);
         matEnt.setActividadId(actividadService.getActividadById(materialesx.actividadId()));
         System.out.println(materialesx.fecha());
         System.out.println(materialesx.horaReg());
@@ -85,7 +87,8 @@ public class MaterialesxServiceImp implements MaterialesxService {
     public Materialesx update(MaterialesxDto.MaterialesxCrearDto materialesx, Long id) {
         Materialesx materialesxx = materialesxRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Periodo not exist with id :" + id));
-            System.out.println("IMPRIME:"+materialesx.modFh());
+        System.out.println("IMPRIME:" + materialesx.modFh());
+
         materialesxx.setFecha(materialesx.fecha());
         materialesxx.setHoraReg(materialesx.horaReg());
         materialesxx.setOfflinex(materialesx.offlinex());

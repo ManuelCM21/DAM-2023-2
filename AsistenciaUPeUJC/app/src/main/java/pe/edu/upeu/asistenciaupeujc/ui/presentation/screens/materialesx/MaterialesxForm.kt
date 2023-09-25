@@ -90,6 +90,8 @@ fun formulario(id:Long,
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val isLoading by viewModel.isLoading.observeAsState(false)
+    val actis by viewModel.activ.observeAsState(arrayListOf())
+
     var locationCallback: LocationCallback? = null
     var fusedLocationClient: FusedLocationProviderClient? = null
     fusedLocationClient = LocationServices.getFusedLocationProviderClient(
@@ -123,7 +125,7 @@ fun formulario(id:Long,
     Scaffold(modifier = Modifier.padding(top = 60.dp, start = 16.dp, end = 16.dp, bottom = 32.dp)){
         BuildEasyForms { easyForm ->
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-             /*   NameTextField(easyForms = easyForm, text =actividad?.nombreActividad!!,"Nomb. Actividad:", MyFormKeys.NAME )*/
+
                 var listE = listOf(
                     ComboModel("SI","SI"),
                     ComboModel("NO","NO"),
@@ -138,9 +140,7 @@ fun formulario(id:Long,
                 TimePickerCustom(easyForm = easyForm, label = "hora_reg", texts = materialesx?.horaReg!!, MyFormKeys.HORAREG, "HH:mm:ss")
                 DatePickerCustom(easyForm = easyForm, label = "modFh", texts = materialesx?.modFh!!, MyFormKeys.MODFH,"yyyy-MM-dd")
 
-                NameTextField(easyForms = easyForm, text =materialesx?.actividadId!!.toString(),"actividadID:", MyFormKeys.ACTIVIDADID )
-
-
+                DropdownMenuCustom(easyForm = easyForm, label = "Actividad:", textv ="", viewModel.listE, MyFormKeys.ACTIVIDADID )
 
 
                 Row(Modifier.align(Alignment.CenterHorizontally)){
@@ -153,7 +153,8 @@ fun formulario(id:Long,
                         person.fecha=(lista.get(4) as EasyFormsResult.GenericStateResult<String>).value
                         person.horaReg=(lista.get(5) as EasyFormsResult.GenericStateResult<String>).value
                         person.modFh=(lista.get(6) as EasyFormsResult.GenericStateResult<String>).value
-                        person.actividadId = (lista.get(7) as EasyFormsResult.StringResult).value.toLong()
+                        person.actividadId=splitCadena((lista.get(7) as EasyFormsResult.GenericStateResult<String>).value).toLong()
+                        //person.actividadId = (lista.get(7) as EasyFormsResult.StringResult).value.toLong()
 
 
                         if (id==0.toLong()){
