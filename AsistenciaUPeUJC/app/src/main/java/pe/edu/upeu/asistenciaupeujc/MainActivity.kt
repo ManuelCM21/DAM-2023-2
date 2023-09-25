@@ -70,6 +70,7 @@ class MainActivity : ComponentActivity() {
             val themeType=remember{ mutableStateOf(ThemeType.RED) }
             val darkThemex= isSystemInDarkTheme()
             val darkTheme = remember { mutableStateOf(darkThemex) }
+
             val colorScheme=when(themeType.value){
                 ThemeType.PURPLE->{if (darkTheme.value) DarkPurpleColors else LightPurpleColors}
                 ThemeType.RED->{if (darkTheme.value) DarkRedColors else LightRedColors}
@@ -128,7 +129,9 @@ fun MainScreen(
         Destinations.Pantalla2,
         Destinations.Pantalla3,
         Destinations.Pantalla4,
-        Destinations.Pantalla5
+        Destinations.Pantalla5,
+        Destinations.ActividadUI,
+        Destinations.MaterialesxUI,
     )
     val navigationItems2 = listOf(
         Destinations.Pantalla1,
@@ -137,7 +140,7 @@ fun MainScreen(
     )
     val currentNavBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentNavBackStackEntry?.destination?.route ?: Destinations.Pantalla1.route
-    val list = currentRoute.split("/")
+    val list = currentRoute.split("/", "?")
     ModalNavigationDrawer(
         drawerContent = {
             AppDrawer(route = list[0], scope = scope, scaffoldState = drawerState,
@@ -175,40 +178,20 @@ fun MainScreen(
                     openDialog={openDialog.value=true}
                 )
             }, modifier = Modifier,
-            floatingActionButton = {
+            /*floatingActionButton = {
                 MultiFloatingActionButton(
                     navController=navController,
                     fabIcon = Icons.Filled.Add,
                     items = fabItems,
                     showLabels = true
                 )
-                /*MultiFloatingActionButton(
-                    items = listOf(
-                        FabButtonItem(
-                            iconRes = Icons.Filled.Home,
-                            label = "Home"
-                        ),
-                        FabButtonItem(
-                            iconRes = Icons.Filled.List,
-                            label = "Lista"
-                        ),
-                        FabButtonItem(
-                            iconRes = Icons.Filled.Notifications,
-                            label = "Noti"
-                        )
-                    ),
-                    onFabItemClicked = {
-                        Toast.makeText(context, it.label, Toast.LENGTH_SHORT).show()
-                    },
-                    fabIcon = FabButtonMain(),
-                    fabOption = FabButtonSub()
-                )*/
+
             },
             floatingActionButtonPosition = FabPosition.End,
             bottomBar = { BottomAppBar {
-                BottomNavigationBar(navController = navController)
+                BottomNavigationBar(navigationItems2, navController = navController)
 
-            }}
+            }}*/
         ) {
             NavigationHost(navController, darkMode, modif= it )
         }
