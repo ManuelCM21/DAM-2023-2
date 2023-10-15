@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:po/03-bool-condicion.dart';
+import 'package:po/Ejercicios/03-bool-condicion.dart';
+import 'package:po/Operaciones/clase_abstracta.dart';
+import 'package:po/Operaciones/clase_operacion.dart';
 
 void main() {
   print("Hola Flutter");
   definirVariables();
   main2();
+  operacion1();
+  operacion2();
   runApp(const MyApp());
 }
 
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Text( 'Flutter Demo Home Page'),
+      home: const Text('Flutter Demo Home Page'),
     );
   }
 }
