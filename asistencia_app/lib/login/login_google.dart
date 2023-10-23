@@ -18,8 +18,8 @@ class MainLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider<UsuarioaApi>(
-      create: (_) => UsuarioaApi.create(),
+    return Provider<UsuarioApi>(
+      create: (_) => UsuarioApi.create(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.blue),
@@ -164,8 +164,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     final prefs = await SharedPreferences.getInstance();
 
-                    final api =
-                        Provider.of<UsuarioaApi>(context, listen: false);
+                    final api = Provider.of<UsuarioApi>(context, listen: false);
                     final user = UsuarioModelo.login(
                         _controllerUser.text, _controllerPass.text);
                     bool ingreso = false;
@@ -207,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
             print("Entro Google: $modLocal");
             TokenUtil.localx = modLocal;
             if (!TokenUtil.localx) {
-              final api = Provider.of<UsuarioaApi>(context, listen: false);
+              final api = Provider.of<UsuarioApi>(context, listen: false);
               final user =
                   UsuarioModelo.login("davidmp@upeu.edu.pe", "Da12345*");
               api.login(user).then((value) {

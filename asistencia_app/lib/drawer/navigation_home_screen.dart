@@ -1,8 +1,9 @@
 import 'package:asistencia_app/theme/AppTheme.dart';
 import 'package:asistencia_app/drawer/drawer_user_controller.dart';
 import 'package:asistencia_app/drawer/home_drawer.dart';
-// import 'package:asistencia_app/ui/actividadb/actividad_main.dart';
-// import 'package:asistencia_app/ui/actividadfire/actividad_main.dart';
+import 'package:asistencia_app/ui/actividad/actividad_main.dart';
+//import 'package:asistencia_app/ui/actividadb/actividad_main.dart';
+//import 'package:asistencia_app/ui/actividadfire/actividad_main.dart';
 import 'package:asistencia_app/ui/help_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +42,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
               //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
             },
             screenView: screenView!!,
-            drawerIsOpen: (bool) {},
+            drawerIsOpen: (bool ) {  },
             //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
           ),
         ),
@@ -57,15 +59,15 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         });
       } else if (drawerIndex == DrawerIndex.FeedBack) {
         setState(() {
-          // screenView = MainActividad();
+          screenView = MainActividad();
         });
-      } else if (drawerIndex == DrawerIndex.Help) {
+      }else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-          // screenView = MainActividadB();
+         // screenView = MainActividadB();
         });
-      } else if (drawerIndex == DrawerIndex.Invite) {
+      }else if (drawerIndex == DrawerIndex.Invite) {
         setState(() {
-          // screenView = MainActividadBFire();
+        //  screenView = MainActividadBFire();
         });
       } else {
         //do in your way......

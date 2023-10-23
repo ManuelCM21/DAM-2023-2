@@ -1,3 +1,4 @@
+
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
@@ -14,16 +15,8 @@ class UsuarioModelo {
     required this.offlinex,
   });
 
-  UsuarioModelo.login(this.correo, this.password)
-      : nombres = "",
-        apellidos = "",
-        token = "",
-        dni = "",
-        perfilPrin = "",
-        estado = "",
-        offlinex = "";
-
-  UsuarioModelo.login2(this.correo, this.password);
+  UsuarioModelo.login(this.correo, this.password):nombres="", apellidos="",token="",dni="", perfilPrin="",estado="", offlinex="";
+  UsuarioModelo.loginDos(this.correo, this.password):nombres="", apellidos="";
 
   late final String nombres;
   late final String apellidos;
@@ -35,17 +28,17 @@ class UsuarioModelo {
   late final String estado;
   late final String offlinex;
 
-  factory UsuarioModelo.fromJson(Map<String, dynamic> json) {
+  factory UsuarioModelo.fromJson(Map<String, dynamic> json){
     return UsuarioModelo(
-      nombres: json['nombres'],
-      apellidos: json['apellidos'],
-      correo: json['correo'],
-      password: json['password'],
-      token: json['token'],
-      dni: json['dni'],
-      perfilPrin: json['perfilPrin'],
-      estado: json['estado'],
-      offlinex: json['offlinex'],
+      nombres : json['nombres'],
+      apellidos : json['apellidos'],
+      correo : json['correo'],
+      password : json['password'],
+      token : json['token'],
+      dni : json['dni'],
+      perfilPrin : json['perfilPrin'],
+      estado : json['estado'],
+      offlinex : json['offlinex'],
     );
   }
 
@@ -76,11 +69,6 @@ class RespUsuarioModelo {
     required this.estado,
     required this.offlinex,
   });
-
-  RespUsuarioModelo.login(this.correo);
-
-  RespUsuarioModelo.login2(this.correo);
-
   late final int id;
   late final String nombres;
   late final String apellidos;
@@ -91,18 +79,18 @@ class RespUsuarioModelo {
   late final String estado;
   late final String offlinex;
 
-  factory RespUsuarioModelo.fromJson(Map<String, dynamic> json) {
-    return RespUsuarioModelo(
-      id: json['id'],
-      nombres: json['nombres'],
-      apellidos: json['apellidos'],
-      correo: json['correo'],
-      token: json['token'],
-      dni: json['dni'],
-      perfilPrin: json['perfilPrin'],
-      estado: json['estado'],
-      offlinex: json['offlinex'],
-    );
+  factory RespUsuarioModelo.fromJson(Map<String, dynamic> json){
+  return RespUsuarioModelo(
+      id : json['id'],
+      nombres : json['nombres'],
+      apellidos : json['apellidos'],
+      correo : json['correo'],
+      token : json['token'],
+      dni : json['dni'],
+      perfilPrin : json['perfilPrin'],
+      estado : json['estado'],
+      offlinex : json['offlinex'],
+  );
   }
 
   Map<String, dynamic> toJson() {
