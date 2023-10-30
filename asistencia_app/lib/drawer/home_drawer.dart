@@ -96,7 +96,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                   .value /
                               360),
                           child: Center(
-                            child:  name==null? CircleAvatar(
+                            child:  imageUrl==""? CircleAvatar(
                               backgroundImage: AssetImage('assets/imagen/man-icon.png'),
                               radius: 40,
                               backgroundColor: Colors.transparent,

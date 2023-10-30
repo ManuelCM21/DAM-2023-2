@@ -2,6 +2,7 @@ import 'package:asistencia_app/theme/AppTheme.dart';
 import 'package:asistencia_app/drawer/drawer_user_controller.dart';
 import 'package:asistencia_app/drawer/home_drawer.dart';
 import 'package:asistencia_app/ui/actividad/actividad_main.dart';
+import 'package:asistencia_app/ui/actividadb/actividad_main.dart';
 //import 'package:asistencia_app/ui/actividadb/actividad_main.dart';
 //import 'package:asistencia_app/ui/actividadfire/actividad_main.dart';
 import 'package:asistencia_app/ui/help_screen.dart';
@@ -63,7 +64,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         });
       }else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-         // screenView = MainActividadB();
+          screenView = MainActividadB();
         });
       }else if (drawerIndex == DrawerIndex.Invite) {
         setState(() {

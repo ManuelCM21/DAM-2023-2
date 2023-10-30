@@ -1,15 +1,18 @@
 import 'dart:io';
 
 import 'package:animated_floating_buttons/animated_floating_buttons.dart';
-import 'package:asistencia_app/ui/actividad/MyAppState.dart';
+import 'package:asistencia_app/bloc/actividad/actividad_bloc.dart';
+import 'package:asistencia_app/repository/ActividadRepository.dart';
+import 'package:asistencia_app/ui/actividadb/MyAppState.dart';
 import 'package:asistencia_app/apis/actividad_api.dart';
 //import 'package:asistencia_app/apis/asistencia_api.dart';
 import 'package:asistencia_app/comp/TabItem.dart';
 //import 'package:asistencia_app/modelo/AsistenciapaxModelo.dart';
-import 'package:asistencia_app/ui/actividad/actividad_edit.dart';
-import 'package:asistencia_app/ui/actividad/actividad_form.dart';
+import 'package:asistencia_app/ui/actividadb/actividad_edit.dart';
+import 'package:asistencia_app/ui/actividadb/actividad_form.dart';
 import 'package:flutter/material.dart';
 import 'package:asistencia_app/modelo/ActividadModelo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -20,7 +23,7 @@ import 'package:excel/excel.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
-class MainActividad extends StatelessWidget {
+class MainActividadB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /*return Provider<ActividadApi>(
@@ -32,10 +35,10 @@ class MainActividad extends StatelessWidget {
         home: ActividadUI(),
       ),
     );*/
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        Provider<ActividadApi>(create: (_) => ActividadApi.create(),),
-       // Provider<AsistenciapaApi>(create: (_) => AsistenciapaApi.create(),),
+        BlocProvider(create: (_)=>ActividadBloc(
+            ActividadRepository())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -62,6 +65,7 @@ class _ActividadUIState extends State<ActividadUI> {
     super.initState();
     //apiService = ApiCovid();
     //api=Provider.of<PredictionApi>(context, listen: false).getPrediction();
+    BlocProvider.of<ActividadBloc>(context).add(ListarActividadEvent());
     print("entro aqui");
   }
   final GlobalKey<AnimatedFloatingActionButtonState> key =
@@ -99,7 +103,7 @@ class _ActividadUIState extends State<ActividadUI> {
 
         appBar: new AppBar(
           title: Text(
-            'Lista de Actividades',
+            'Lista de Actividades Bloc',
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
@@ -136,7 +140,18 @@ class _ActividadUIState extends State<ActividadUI> {
 
 
         backgroundColor: AppTheme.nearlyWhite,
-        body: FutureBuilder<List<ActividadModelo>>(
+        body: BlocBuilder<ActividadBloc,ActividadState>(
+          builder: (context,state){
+            if(state is ActividadLoadedState){
+              return _buildListView(context, state.ActividadList);
+            }else{
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
+        /*body: FutureBuilder<List<ActividadModelo>>(
           future: Provider.of<ActividadApi>(context, listen: true)
               .getActividad(TokenUtil.TOKEN).then((value) => value),
           builder: (BuildContext context,
@@ -156,7 +171,7 @@ class _ActividadUIState extends State<ActividadUI> {
               );
             }
           },
-        ),
+        ),*/
         bottomNavigationBar: _buildBottomTab(),
         floatingActionButton: AnimatedFloatingActionButton(
           key: key,
@@ -287,12 +302,12 @@ class _ActividadUIState extends State<ActividadUI> {
                                               }).then((value) {
                                             if (value.toString() == "Success") {
                                               print(personax.id);
-                                              Provider.of<ActividadApi>(context,
+                                              /*Provider.of<ActividadApi>(context,
                                                   listen: false)
                                                   .deleteActividad(TokenUtil.TOKEN,personax.id)
-                                                  .then((value) => onGoBack(value));
+                                                  .then((value) => onGoBack(value));*/
                                               //var onGoBack = onGoBack;
-                                              //BlocProvider.of<ProductosBloc>(context).add(DeleteProductoEvent(producto: state.productosList[index]));
+                                              BlocProvider.of<ActividadBloc>(context).add(DeleteActividadEvent(personax));
                                             }
                                           });
                                         }))

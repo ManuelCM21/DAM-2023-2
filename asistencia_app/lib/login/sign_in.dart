@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-//keytool -list -v -alias androiddebugkey -keystore C:\Users\DELL\.android\debug.keystore
+//keytool -list -v -alias androiddebugkey -keystore C:\Users\DTI-Laboratorios\.android\debug.keystore
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 //bool _isLoggedIn = false;
 String? name;
@@ -24,11 +24,11 @@ Future<String> signInWithGoogle() async {
     // Checking if email and name is null
     assert(user.email != null);
     assert(user.displayName != null);
-    assert(user.photoUrl != null);
+    //assert(user.photoUrl != null);
 
     name = user.displayName;
     email = user.email;
-    imageUrl = user.photoUrl!;
+    imageUrl = user.photoUrl==null?"":user.photoUrl!;
     print('signInWithGoogle succeeded: $user');
     return '$user';
   }

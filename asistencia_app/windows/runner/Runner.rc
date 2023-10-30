@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
+            VALUE "CompanyName", "pe.edu.upeu" "\0"
             VALUE "FileDescription", "asistencia_app" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "asistencia_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 pe.edu.upeu. All rights reserved." "\0"
             VALUE "OriginalFilename", "asistencia_app.exe" "\0"
             VALUE "ProductName", "asistencia_app" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

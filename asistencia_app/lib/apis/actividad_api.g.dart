@@ -13,7 +13,7 @@ class _ActividadApi implements ActividadApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://172.22.5.18:8080';
+    baseUrl ??= UrlApi.urlApix;
   }
 
   final Dio _dio;

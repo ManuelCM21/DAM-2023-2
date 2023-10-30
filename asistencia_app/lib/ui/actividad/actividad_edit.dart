@@ -7,6 +7,7 @@ import 'package:checkbox_grouped/checkbox_grouped.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -147,7 +148,7 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
                                 _formKey.currentState!.save();
                                 ActividadModelo mp = new ActividadModelo.unlaunched();
                                 mp.nombreActividad = _nombreActividad;
-                                mp.fecha=_fecha.value.text;
+                                mp.fecha=DateFormat('yyyy-MM-dd').format(DateTime.parse(_fecha.value.text));
                                 mp.horai=_horai.value.text;
                                 mp.minToler=_minToler.value.text;
                                 mp.latitud=currentPosition!.latitude.toString();
