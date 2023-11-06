@@ -23,7 +23,6 @@ class _HelpScreenState extends State<HelpScreen> {
       debugShowCheckedModeBanner: false,
       themeMode: AppTheme.useLightMode ? ThemeMode.light : ThemeMode.dark,
       theme: AppTheme.themeDataLight,
-      //theme: AppTheme.themeData,
       darkTheme: AppTheme.themeDataDark,
 
       home: SafeArea(

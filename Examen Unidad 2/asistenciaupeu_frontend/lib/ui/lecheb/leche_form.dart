@@ -70,7 +70,6 @@ class _LecheFormState extends State<LecheForm> {
       body: SingleChildScrollView(
           child: Container(
               margin: EdgeInsets.all(24),
-              //color: AppTheme.nearlyWhite,
               child: Form(
                 key: _formKey,
                 child: Column(

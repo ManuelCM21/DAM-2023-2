@@ -100,8 +100,6 @@ class _MyAppState extends State<MyAppQR> {
     });
   }
 
-
-
   Future<void> scanQR() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.

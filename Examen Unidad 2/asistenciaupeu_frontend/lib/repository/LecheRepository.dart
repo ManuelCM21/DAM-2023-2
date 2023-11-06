@@ -14,8 +14,7 @@ class LecheRepository {
   }
 
   Future<List<LecheModelo>> getLeche() async {
-    var dato = await lecheApi!.getLeche(TokenUtil.TOKEN).then((
-        value) => value);
+    var dato = await lecheApi!.getLeche(TokenUtil.TOKEN).then((value) => value);
     return await dato;
   }
 
@@ -23,8 +22,7 @@ class LecheRepository {
     return await lecheApi!.deleteLeche(TokenUtil.TOKEN, id);
   }
 
-  Future<LecheModelo> updateLeche(int id,
-      LecheModelo leche) async {
+  Future<LecheModelo> updateLeche(int id, LecheModelo leche) async {
     return await lecheApi!.updateLeche(TokenUtil.TOKEN, id, leche);
   }
 

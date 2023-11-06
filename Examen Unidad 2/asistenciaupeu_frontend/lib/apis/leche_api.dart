@@ -4,7 +4,6 @@ import 'package:asistenciaupeu_frontend/util/UrlApi.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/http.dart';
-
 part 'leche_api.g.dart';
 
 @RestApi(baseUrl: UrlApi.urlApix)

@@ -6,7 +6,6 @@ import 'package:asistenciaupeu_frontend/repository/LecheRepository.dart';
 import 'package:asistenciaupeu_frontend/ui/lecheb/MyAppState.dart';
 //import 'package:asistenciaupeu_frontend/apis/asistencia_api.dart';
 import 'package:asistenciaupeu_frontend/comp/TabItem.dart';
-//import 'package:asistenciaupeu_frontend/modelo/AsistenciapaxModelo.dart';
 import 'package:asistenciaupeu_frontend/ui/lecheb/leche_edit.dart';
 import 'package:asistenciaupeu_frontend/ui/lecheb/leche_form.dart';
 import 'package:flutter/material.dart';

@@ -16,8 +16,7 @@ class LecheBloc extends Bloc<LecheEvent, LecheState> {
         emit(LecheLoadingState());
         try {
           print("pasox!!");
-          List<LecheModelo> lecheList =
-              await _lecheRepository.getLeche();
+          List<LecheModelo> lecheList = await _lecheRepository.getLeche();
           emit(LecheLoadedState(lecheList));
         } catch (e) {
           emit(LecheError(e as Error));
@@ -26,8 +25,7 @@ class LecheBloc extends Bloc<LecheEvent, LecheState> {
         try {
           await _lecheRepository.deleteLeche(event.leche.id);
           emit(LecheLoadingState());
-          List<LecheModelo> lecheList =
-              await _lecheRepository.getLeche();
+          List<LecheModelo> lecheList = await _lecheRepository.getLeche();
           emit(LecheLoadedState(lecheList));
         } catch (e) {
           emit(LecheError(e as Error));
@@ -36,19 +34,16 @@ class LecheBloc extends Bloc<LecheEvent, LecheState> {
         try {
           await _lecheRepository.createLeche(event.leche);
           emit(LecheLoadingState());
-          List<LecheModelo> lecheList =
-              await _lecheRepository.getLeche();
+          List<LecheModelo> lecheList = await _lecheRepository.getLeche();
           emit(LecheLoadedState(lecheList));
         } catch (e) {
           emit(LecheError(e as Error));
         }
       } else if (event is UpdateLecheEvent) {
         try {
-          await _lecheRepository.updateLeche(
-              event.leche.id, event.leche);
+          await _lecheRepository.updateLeche(event.leche.id, event.leche);
           emit(LecheLoadingState());
-          List<LecheModelo> lecheList =
-              await _lecheRepository.getLeche();
+          List<LecheModelo> lecheList = await _lecheRepository.getLeche();
           emit(LecheLoadedState(lecheList));
         } catch (e) {
           emit(LecheError(e as Error));
