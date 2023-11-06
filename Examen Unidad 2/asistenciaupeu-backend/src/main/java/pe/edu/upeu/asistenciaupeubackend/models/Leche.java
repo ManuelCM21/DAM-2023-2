@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 /**
  *
  * @author EP-Ing_Sist.-CALIDAD IMPORTANTE
- * https://github.com/FasterXML/jackson-databind/issues/2011
+ *         https://github.com/FasterXML/jackson-databind/issues/2011
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -54,7 +54,7 @@ public class Leche {
     private String litrosLeche;
 
     @Size(max = 255)
-    private String turno; 
+    private String turno;
 
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;

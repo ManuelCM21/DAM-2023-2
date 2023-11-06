@@ -17,7 +17,7 @@ public class LecheDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDate fecha;
 
-    Double litrosLeche;
+    String litrosLeche;
 
     String turno;
 

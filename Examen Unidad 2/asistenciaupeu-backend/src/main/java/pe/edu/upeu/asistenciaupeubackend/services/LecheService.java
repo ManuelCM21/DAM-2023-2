@@ -18,5 +18,5 @@ public interface LecheService {
 
     Leche getLecheById(Long id);
 
-    Leche update(Leche leche, Long id);   
+    Leche update(Leche leche, Long id);
 }

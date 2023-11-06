@@ -58,7 +58,6 @@ public class LecheServiceImp implements LecheService {
         lecheRepo.delete(lechex);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", true);
-
         return response;
     }
 

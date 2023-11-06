@@ -4,12 +4,12 @@
  */
 package pe.edu.upeu.asistenciaupeubackend.mappers;
 
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import pe.edu.upeu.asistenciaupeubackend.dtos.LecheDto;
 import pe.edu.upeu.asistenciaupeubackend.models.Leche;
+
 /**
  *
  * @author DELL
@@ -18,7 +18,7 @@ import pe.edu.upeu.asistenciaupeubackend.models.Leche;
 public interface LecheMapper {
     LecheDto toLecheDto(Leche entidad);
 
-    //@Mapping(target = "id", ignore = true)
+    // @Mapping(target = "id", ignore = true)
     @Mapping(target = "id", ignore = true)
-    Leche lecheCrearDtoToLeche(LecheDto.LecheCrearDto entidadCrearDto);    
+    Leche lecheCrearDtoToLeche(LecheDto.LecheCrearDto entidadCrearDto);
 }

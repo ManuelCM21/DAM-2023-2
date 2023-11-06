@@ -37,17 +37,12 @@ public class LecheController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseEntity<List<Leche>> listLeche() {
         List<Leche> actDto = lecheService.findAll();
-        
-        //Gson gson = new Gson();
-        //String jsonCartList = gson.toJson(actDto);
-        //System.out.println("Ver Aqui: "+jsonCartList);
         return ResponseEntity.ok(actDto);
-        //return new ResponseEntity<>(actDto, HttpStatus.OK);
     }
     
     @PostMapping("/crear")
-    public ResponseEntity<Leche> createLeche(@RequestBody Leche Leche) {
-        Leche data = lecheService.save(Leche);
+    public ResponseEntity<Leche> createLeche(@RequestBody Leche leche) {
+        Leche data = lecheService.save(leche);
         return ResponseEntity.ok(data);
     }
     
