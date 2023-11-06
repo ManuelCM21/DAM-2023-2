@@ -9,8 +9,6 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
 import '../../modelo/LecheModelo.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class MyAppQR extends StatefulWidget {
   LecheModelo modelA;

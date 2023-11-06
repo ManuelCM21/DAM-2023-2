@@ -2,7 +2,6 @@ import 'package:asistenciaupeu_frontend/modelo/LecheModelo.dart';
 import 'package:asistenciaupeu_frontend/repository/LecheRepository.dart';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 part 'leche_event.dart';

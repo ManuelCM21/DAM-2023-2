@@ -31,8 +31,6 @@ class _LecheFormEditState extends State<LecheFormEdit> {
   late int _periodoId = 0;
 
   TextEditingController _fecha = new TextEditingController();
-  TextEditingController _fechaCreacion = new TextEditingController();
-  TextEditingController _fechaActualizacion = new TextEditingController();
   DateTime? selectedDate;
 
   late String _litrosLeche = "";
@@ -115,6 +113,7 @@ class _LecheFormEditState extends State<LecheFormEdit> {
                                     content: Text('Processing Data'),
                                   ),
                                 );
+
                                 _formKey.currentState!.save();
                                 LecheModelo mp = LecheModelo.unlaunched();
                                 mp.fecha = DateFormat('yyyy-MM-dd')

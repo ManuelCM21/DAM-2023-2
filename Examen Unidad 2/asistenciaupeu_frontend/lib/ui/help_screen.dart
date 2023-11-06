@@ -1,7 +1,6 @@
 
 import 'package:asistenciaupeu_frontend/comp/CustomAppBarX.dart';
 import 'package:flutter/material.dart';
-import 'package:asistenciaupeu_frontend/comp/CustomAppBar.dart';
 import 'package:asistenciaupeu_frontend/theme/AppTheme.dart';
 
 class HelpScreen extends StatefulWidget {

@@ -17,7 +17,6 @@ class _LecheApi implements LecheApi {
   }
 
   final Dio _dio;
-
   String? baseUrl;
 
   @override
