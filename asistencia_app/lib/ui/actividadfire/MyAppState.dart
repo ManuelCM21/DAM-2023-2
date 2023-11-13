@@ -2,35 +2,40 @@ import 'dart:async';
 
 //import 'package:asistencia_app/apis/asistencia_api.dart';
 //import 'package:asistencia_app/modelo/AsistenciapaxModelo.dart';
-import 'package:asistenciaupeu_frontend/util/TokenUtil.dart';
+import 'package:asistencia_app/modelo/ActividadModeloFire.dart';
+import 'package:asistencia_app/util/TokenUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
-import '../../modelo/LecheModelo.dart';
+import '../../modelo/ActividadModelo.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MyAppQR extends StatefulWidget {
-  LecheModelo modelA;
-  MyAppQR({required this.modelA}) : super();
+  ActividadModeloFire modelA;
+  MyAppQR({required this.modelA}):super();
 
   @override
   _MyAppState createState() => _MyAppState(modelA: modelA);
 }
 
 class _MyAppState extends State<MyAppQR> {
-  LecheModelo modelA;
-  _MyAppState({required this.modelA}) : super();
+
+  ActividadModeloFire modelA;
+  _MyAppState({required this.modelA}):super();
   String _scanBarcode = 'Unknown';
   Position? currentPosition;
   final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
   @override
   void initState() {
     super.initState();
+
   }
 
-  void registrarLeche() async {
-    /* DateTime now = DateTime.now();
+  void registrarAsistencia() async{
+   /* DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
     String formattedTime = DateFormat('HH:mm:ss').format(now);
 
@@ -40,7 +45,7 @@ class _MyAppState extends State<MyAppQR> {
     print(api.success);
     print(modelA.id);
     AsistenciapaxModelo mp = new AsistenciapaxModelo.unlaunched();
-    mp.leche=modelA;
+    mp.actividad=modelA;
     mp.id=0;
     mp.fecha=formattedDate;
     mp.horaReg=formattedTime;
@@ -51,7 +56,7 @@ class _MyAppState extends State<MyAppQR> {
     mp.tipo="Est.";
     mp.tipoCui="DNI";
 
-    print("A:${mp.Leche}, ID:${mp.id}, F:${mp.fecha}, "
+    print("A:${mp.actividad}, ID:${mp.id}, F:${mp.fecha}, "
         "H:${mp.horaReg} C:${mp.calificacion} CUI:${mp.cui} "
         "La: ${mp.latituda}, Lo:${mp.longituda} "
         );
@@ -81,21 +86,24 @@ class _MyAppState extends State<MyAppQR> {
       );
     }
 */
+
   }
 
   Future<void> startBarcodeScanStream() async {
     FlutterBarcodeScanner.getBarcodeStreamReceiver(
-            '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
+        '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
         .listen((barcode) {
-      _scanBarcode = barcode;
-      print("Lecturado: $barcode");
-      registrarLeche();
+          _scanBarcode=barcode;
+          print("Lecturado: $barcode");
+          registrarAsistencia();
       /*if (!mounted) return;
       setState(() {
         _scanBarcode = barcode;
       });*/
     });
   }
+
+
 
   Future<void> scanQR() async {
     String barcodeScanRes;
@@ -104,6 +112,7 @@ class _MyAppState extends State<MyAppQR> {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.QR);
       print(barcodeScanRes);
+
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -114,9 +123,10 @@ class _MyAppState extends State<MyAppQR> {
     if (!mounted) return;
     setState(() {
       _scanBarcode = barcodeScanRes;
-      registrarLeche();
+      registrarAsistencia();
     });
   }
+
 
   Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
@@ -125,6 +135,7 @@ class _MyAppState extends State<MyAppQR> {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.BARCODE);
       print(barcodeScanRes);
+
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -136,7 +147,7 @@ class _MyAppState extends State<MyAppQR> {
 
     setState(() {
       _scanBarcode = barcodeScanRes;
-      registrarLeche();
+      registrarAsistencia();
     });
   }
 
@@ -145,8 +156,8 @@ class _MyAppState extends State<MyAppQR> {
     getCurrentLocation();
     return MaterialApp(
         home: Scaffold(
-            appBar: AppBar(
-                title: const Text('Registrar Asistencia'), centerTitle: true),
+            appBar: AppBar(title: const Text('Registrar Asistencia'),
+            centerTitle: true),
             body: Builder(builder: (BuildContext context) {
               return Container(
                   alignment: Alignment.center,
@@ -169,7 +180,7 @@ class _MyAppState extends State<MyAppQR> {
             })));
   }
 
-  Future<bool> permiso() async {
+  Future<bool> permiso() async{
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await _geolocatorPlatform.isLocationServiceEnabled();
@@ -189,14 +200,14 @@ class _MyAppState extends State<MyAppQR> {
     return true;
   }
 
-  Future<void> getCurrentLocation() async {
+  Future<void>  getCurrentLocation() async {
     final hasPermission = await permiso();
     if (!hasPermission) {
       return;
     }
     Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.best,
-            forceAndroidLocationManager: true)
+        desiredAccuracy: LocationAccuracy.best,
+        forceAndroidLocationManager: true)
         .then((Position position) {
       setState(() {
         currentPosition = position;

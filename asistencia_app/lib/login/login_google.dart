@@ -64,11 +64,11 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 20),
                 _buildForm(),
                 SizedBox(height: 20),
-                checkbox(
+                /*checkbox(
                     title: "Fire:",
                     initValue: modLocal,
                     onChanged: (sts) => setState(() => modLocal = sts)) ,
-                SizedBox(height: 20),
+                SizedBox(height: 20),*/
                 _signInButton(),
               ],
             ),

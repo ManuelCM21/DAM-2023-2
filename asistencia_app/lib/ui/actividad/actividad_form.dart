@@ -17,7 +17,8 @@ class ActividadForm extends StatefulWidget {
 }
 
 class _ActividadFormState extends State<ActividadForm> {
-  late String _nombreActividad = "";
+
+  late String _nombreActividad="";
 
   TextEditingController _fecha = new TextEditingController();
   DateTime? selectedDate;
@@ -26,12 +27,12 @@ class _ActividadFormState extends State<ActividadForm> {
   TextEditingController _minToler = new TextEditingController();
   TimeOfDay? selectedTime;
 
-  late String _estado = "D";
+  late String _estado="D";
 
   Position? currentPosition;
   final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
 
-  late String _evaluar = "NO";
+  late String _evaluar="NO";
 
   late String _userCreate;
   var _data = [];
@@ -46,11 +47,11 @@ class _ActividadFormState extends State<ActividadForm> {
     {'value': 'NO', 'display': 'NO'}
   ];
 
-  late String _materiales = "";
-  late String _validarInsc = "NO";
-  late String _asisSubAct = "NO";
-  late String _entSal = "NO";
-  late String _offlienex = "NO";
+  late String _materiales="";
+  late String _validarInsc="NO";
+  late String _asisSubAct="NO";
+  late String _entSal="NO";
+  late String _offlienex="NO";
 
   @override
   void initState() {
@@ -65,57 +66,24 @@ class _ActividadFormState extends State<ActividadForm> {
     isMultipleSelection: true,
   );
 
-  void capturaNombreAct(valor) {
-    this._nombreActividad = valor;
-  }
 
-  void capturaFecha(valor) {
-    this._fecha.text = valor;
-  }
 
-  void capturaHorai(valor) {
-    this._horai.text = valor;
-  }
+  void capturaNombreAct(valor){ this._nombreActividad=valor;}
 
-  void capturaMinToler(valor) {
-    this._minToler.text = valor;
-  }
+  void capturaFecha(valor){ this._fecha.text=valor;}
+  void capturaHorai(valor){ this._horai.text=valor;}
+  void capturaMinToler(valor){ this._minToler.text=valor;}
+  void capturaEstado(valor){ this._estado=valor;}
+  void capturaEvaluar(valor){ this._evaluar=valor;}
+  TextEditingController capMinToler(){return this._minToler;}
+  TextEditingController capHorai(){return this._horai;}
+  void capturaMateriales(valor){ this._materiales=valor;}
+  void capturaValidarIns(valor){ this._validarInsc=valor;}
+  void capturaAsisSubAct(valor){ this._asisSubAct=valor;}
+  void capturaEntSal(valor){ this._entSal=valor;}
+  void capturaOfflinex(valor){ this._offlienex=valor;}
 
-  void capturaEstado(valor) {
-    this._estado = valor;
-  }
 
-  void capturaEvaluar(valor) {
-    this._evaluar = valor;
-  }
-
-  TextEditingController capMinToler() {
-    return this._minToler;
-  }
-
-  TextEditingController capHorai() {
-    return this._horai;
-  }
-
-  void capturaMateriales(valor) {
-    this._materiales = valor;
-  }
-
-  void capturaValidarIns(valor) {
-    this._validarInsc = valor;
-  }
-
-  void capturaAsisSubAct(valor) {
-    this._asisSubAct = valor;
-  }
-
-  void capturaEntSal(valor) {
-    this._entSal = valor;
-  }
-
-  void capturaOfflinex(valor) {
-    this._offlienex = valor;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,23 +104,19 @@ class _ActividadFormState extends State<ActividadForm> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+
                     _buildDatoCadena(capturaNombreAct, "Nombre Actividad:"),
-                    _buildDatoFecha(capturaFecha, "F.Evento"),
-                    _buildDatoHora(capturaHorai, capHorai, "H.Inicio:"),
-                    _buildDatoHora(
-                        capturaMinToler, capMinToler, "M.Tolerancia:"),
-                    _buildDatoLista(capturaEstado, _estado, "Estado:", lista),
-                    _buildDatoLista(
-                        capturaEvaluar, _evaluar, "Evaluar:", listaEva),
-                    _buildDatoCadena(capturaMateriales, "Materiales:"),
-                    _buildDatoLista(capturaValidarIns, _validarInsc,
-                        "V.Inscripción:", listaEva),
-                    _buildDatoLista(capturaAsisSubAct, _asisSubAct,
-                        "Tiene Sub.Actividad:", listaEva),
-                    _buildDatoLista(
-                        capturaEntSal, _entSal, "R. Entrada/Salida:", listaEva),
-                    _buildDatoLista(
-                        capturaOfflinex, _offlienex, "F. Offline:", listaEva),
+                    _buildDatoFecha(capturaFecha,"F.Evento"),
+                    _buildDatoHora(capturaHorai, capHorai,  "H.Inicio:"),
+                    _buildDatoHora(capturaMinToler, capMinToler, "M.Tolerancia:"),
+                    _buildDatoLista(capturaEstado,_estado, "Estado:", lista),
+                    _buildDatoLista(capturaEvaluar,_evaluar, "Evaluar:", listaEva),
+                    _buildDatoCadena(capturaMateriales,"Materiales:"),
+                    _buildDatoLista(capturaValidarIns,_validarInsc, "V.Inscripción:", listaEva),
+                    _buildDatoLista(capturaAsisSubAct,_asisSubAct, "Tiene Sub.Actividad:", listaEva),
+                    _buildDatoLista(capturaEntSal,_entSal, "R. Entrada/Salida:", listaEva),
+                    _buildDatoLista(capturaOfflinex,_offlienex, "F. Offline:", listaEva),
+
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: Row(
@@ -172,30 +136,24 @@ class _ActividadFormState extends State<ActividadForm> {
                                   ),
                                 );
                                 _formKey.currentState!.save();
-                                ActividadModelo mp =
-                                    new ActividadModelo.unlaunched();
+                                ActividadModelo mp = new ActividadModelo.unlaunched();
                                 mp.nombreActividad = _nombreActividad;
                                 //print(DateFormat('yyyy-MM-dd').format(currentTime));
-                                mp.fecha = DateFormat('yyyy-MM-dd')
-                                    .format(DateTime.parse(_fecha.value.text));
-                                mp.horai = _horai.value.text;
-                                mp.minToler = _minToler.value.text;
-                                mp.latitud =
-                                    currentPosition!.latitude.toString();
-                                mp.longitud =
-                                    currentPosition!.longitude.toString();
-                                mp.estado = _estado;
-                                mp.evaluar = _evaluar;
-                                final prefs =
-                                    await SharedPreferences.getInstance();
-                                mp.userCreate =
-                                    "${prefs.getString('usernameLogin')}";
-                                mp.asistenciaxs = [];
-                                mp.mater = _materiales;
-                                mp.validInsc = _validarInsc;
-                                mp.asisSubact = _asisSubAct;
-                                mp.entsal = _entSal;
-                                mp.offlinex = _offlienex;
+                                mp.fecha=DateFormat('yyyy-MM-dd').format(DateTime.parse(_fecha.value.text));
+                                mp.horai=_horai.value.text;
+                                mp.minToler=_minToler.value.text;
+                                mp.latitud=currentPosition!.latitude.toString();
+                                mp.longitud=currentPosition!.longitude.toString();
+                                mp.estado=_estado;
+                                mp.evaluar=_evaluar;
+                                final prefs= await SharedPreferences.getInstance();
+                                mp.userCreate = "${prefs.getString('usernameLogin')}";
+                                mp.asistenciaxs=[];
+                                mp.mater=_materiales;
+                                mp.validInsc=_validarInsc;
+                                mp.asisSubact=_asisSubAct;
+                                mp.entsal=_entSal;
+                                mp.offlinex=_offlienex;
 
                                 print("NA:${_nombreActividad}, E:${_estado}, "
                                     "F:${_fecha.value.text} HI:${_horai.value.text} MT:${_minToler.value.text} "
@@ -203,11 +161,11 @@ class _ActividadFormState extends State<ActividadForm> {
                                     "U:${prefs.getString('usernameLogin')} EV:${_evaluar}");
 
                                 var api = await Provider.of<ActividadApi>(
-                                        context,
-                                        listen: false)
-                                    .crearActividad(TokenUtil.TOKEN, mp);
+                                    context,
+                                    listen: false)
+                                    .crearActividad(TokenUtil.TOKEN,mp);
                                 print("ver: ${api.toJson()}");
-                                if (api.toJson() != null) {
+                                if (api.toJson() !=null) {
                                   Navigator.pop(context, () {
                                     setState(() {});
                                   });
@@ -265,8 +223,7 @@ class _ActividadFormState extends State<ActividadForm> {
     );
   }
 
-  Widget _buildDatoLista(
-      Function obtValor, _dato, String label, List<dynamic> listaDato) {
+  Widget _buildDatoLista(Function obtValor,_dato, String label, List<dynamic> listaDato) {
     return DropDownFormField(
       titleText: label,
       hintText: 'Seleccione',
@@ -301,7 +258,6 @@ class _ActividadFormState extends State<ActividadForm> {
       });
     }
   }
-
   Widget _buildDatoFecha(Function obtValor, String label) {
     return TextFormField(
       decoration: InputDecoration(labelText: label),
@@ -313,8 +269,8 @@ class _ActividadFormState extends State<ActividadForm> {
         }
         return null;
       },
-      onTap: () {
-        _selectDate(context, obtValor);
+      onTap: (){
+        _selectDate(context,obtValor);
       },
       onSaved: (String? value) {
         obtValor(value!);
@@ -322,21 +278,21 @@ class _ActividadFormState extends State<ActividadForm> {
     );
   }
 
-  Future<void> _selectTime(BuildContext context, Function obtValor) async {
+  Future<void> _selectTime(BuildContext context,Function obtValor) async {
     final TimeOfDay? picked = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
-        builder: (BuildContext? context, Widget? child) {
+        builder: (BuildContext? context, Widget? child){
           return MediaQuery(
             data: MediaQuery.of(context!).copyWith(alwaysUse24HourFormat: true),
             child: child!,
           );
-        });
+        }
+    );
     if (picked != null && picked != selectedTime) {
       setState(() {
         selectedTime = picked;
-        obtValor(
-            "${(selectedTime!.hour) < 10 ? "0" + (selectedTime!.hour).toString() : selectedTime!.hour}:${(selectedTime!.minute) < 10 ? "0" + (selectedTime!.minute).toString() : selectedTime!.minute}:00");
+        obtValor("${(selectedTime!.hour)<10?"0"+(selectedTime!.hour).toString():selectedTime!.hour}:${(selectedTime!.minute)<10?"0"+(selectedTime!.minute).toString():selectedTime!.minute}:00");
         //_horai.text="${selectedTime!.hour}:${selectedTime!.minute}";
       });
     }
@@ -353,7 +309,7 @@ class _ActividadFormState extends State<ActividadForm> {
         }
         return null;
       },
-      onTap: () {
+      onTap: (){
         _selectTime(context, obtValor);
       },
       onSaved: (String? value) {
@@ -363,7 +319,7 @@ class _ActividadFormState extends State<ActividadForm> {
     );
   }
 
-  Future<bool> permiso() async {
+  Future<bool> permiso() async{
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await _geolocatorPlatform.isLocationServiceEnabled();
@@ -383,21 +339,26 @@ class _ActividadFormState extends State<ActividadForm> {
     return true;
   }
 
-  Future<void> getCurrentLocation() async {
+  Future<void>  getCurrentLocation() async {
     final hasPermission = await permiso();
     if (!hasPermission) {
       return;
     }
-    Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.best,
-            forceAndroidLocationManager: true)
-        .then((Position position) {
-      setState(() {
-        currentPosition = position;
-        //getCurrentLocationAddress();
+    if (mounted){
+      Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best,
+          forceAndroidLocationManager: true)
+          .then((Position position) {
+        if(mounted){
+          setState(() {
+            currentPosition = position;
+            //getCurrentLocationAddress();
+          });
+        }
+      }).catchError((e) {
+        print(e);
       });
-    }).catchError((e) {
-      print(e);
-    });
+    }
   }
+
 }

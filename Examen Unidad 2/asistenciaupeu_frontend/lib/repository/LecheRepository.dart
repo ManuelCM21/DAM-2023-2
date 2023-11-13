@@ -27,6 +27,6 @@ class LecheRepository {
   }
 
   Future<LecheModelo> createLeche(LecheModelo leche) async {
-    return await lecheApi!.crearLeche(TokenUtil.TOKEN, leche);
+    return await lecheApi!.createLeche(TokenUtil.TOKEN, leche);
   }
 }

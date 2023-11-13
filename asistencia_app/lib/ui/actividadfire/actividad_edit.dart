@@ -1,18 +1,18 @@
-import 'package:asistencia_app/apis/actividad_api.dart';
+
+import 'package:asistencia_app/bloc/actividadfire/actividad_bloc.dart';
 import 'package:asistencia_app/comp/DropDownFormField.dart';
-import 'package:asistencia_app/modelo/ActividadModelo.dart';
-import 'package:asistencia_app/theme/AppTheme.dart';
-import 'package:asistencia_app/util/TokenUtil.dart';
+import 'package:asistencia_app/modelo/ActividadModeloFire.dart';
+
 import 'package:checkbox_grouped/checkbox_grouped.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ActividadFormEdit extends StatefulWidget {
-  ActividadModelo modelA;
+  ActividadModeloFire modelA;
 
   ActividadFormEdit({required this.modelA}):super();
 
@@ -21,7 +21,7 @@ class ActividadFormEdit extends StatefulWidget {
 }
 
 class _ActividadFormEditState extends State<ActividadFormEdit> {
-  ActividadModelo modelA;
+  ActividadModeloFire modelA;
   _ActividadFormEditState({required this.modelA}):super();
 
   late int _periodoId=0;
@@ -102,7 +102,7 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("Form. Reg. Actividad"),
+        title: const Text("Form. Reg. Actividad B"),
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
@@ -146,7 +146,7 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
                                   ),
                                 );
                                 _formKey.currentState!.save();
-                                ActividadModelo mp = new ActividadModelo.unlaunched();
+                                ActividadModeloFire mp = new ActividadModeloFire.unlaunched();
                                 mp.nombreActividad = _nombreActividad;
                                 mp.fecha=DateFormat('yyyy-MM-dd').format(DateTime.parse(_fecha.value.text));
                                 mp.horai=_horai.value.text;
@@ -157,7 +157,7 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
                                 mp.evaluar=_evaluar;
                                 final prefs= await SharedPreferences.getInstance();
                                 mp.userCreate = "${prefs.getString('usernameLogin')}";
-                                mp.asistenciaxs=[];
+                                //mp.asistenciaxs=[];
                                 mp.mater=_materiales;
                                 mp.validInsc=_validarInsc;
                                 mp.asisSubact=_asisSubAct;
@@ -170,7 +170,7 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
                                     "La: ${currentPosition!.latitude}, Lo:${currentPosition!.longitude} "
                                     "U:${prefs.getString('usernameLogin')} EV:${_evaluar}");
 
-                                var api = await Provider.of<ActividadApi>(
+                                /*var api = await Provider.of<ActividadApi>(
                                     context,
                                     listen: false)
                                     .updateActividad(TokenUtil.TOKEN,modelA.id.toInt(), mp);
@@ -180,7 +180,11 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
                                     setState(() {});
                                   });
                                   // Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationHomeScreen()));
-                                }
+                                }*/
+                                BlocProvider.of<ActividadBloc>(context).add(UpdateActividadEvent(mp));
+                                Navigator.pop(context, () {
+                                  //setState(() {});
+                                });
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(

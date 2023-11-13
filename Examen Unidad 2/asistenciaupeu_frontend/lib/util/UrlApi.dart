@@ -1,5 +1,5 @@
 // ignore_for_file: file_names
-class UrlApi{
+class UrlApi {
   UrlApi._();
-  static const String urlApix="http://172.168.1.105:8080";
+  static const String urlApix = "http://192.168.203.1:8080";
 }

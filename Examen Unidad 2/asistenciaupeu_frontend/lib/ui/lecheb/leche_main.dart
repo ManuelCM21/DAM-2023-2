@@ -58,7 +58,7 @@ class _LecheUIState extends State<LecheUI> {
   final GlobalKey<AnimatedFloatingActionButtonState> key =
       GlobalKey<AnimatedFloatingActionButtonState>();
 
-  String text = 'Asistencia';
+  String text = 'Leche';
   String subject = '';
   List<String> imageNames = [];
   List<String> imagePaths = [];
@@ -303,8 +303,7 @@ class _LecheUIState extends State<LecheUI> {
                                             Icons.send_and_archive_sharp),
                                         padding: EdgeInsets.zero,
                                         constraints: const BoxConstraints(),
-                                        onPressed: () async {
-                                        },
+                                        onPressed: () async {},
                                       );
                                     },
                                   ))

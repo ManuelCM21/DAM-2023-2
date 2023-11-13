@@ -32,7 +32,9 @@ class LecheBloc extends Bloc<LecheEvent, LecheState> {
         }
       } else if (event is CreateLecheEvent) {
         try {
+          print("Entro en Crear");
           await _lecheRepository.createLeche(event.leche);
+          print("Termino en Crear");
           emit(LecheLoadingState());
           List<LecheModelo> lecheList = await _lecheRepository.getLeche();
           emit(LecheLoadedState(lecheList));

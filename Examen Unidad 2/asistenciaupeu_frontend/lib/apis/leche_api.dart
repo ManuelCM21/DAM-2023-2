@@ -20,7 +20,7 @@ abstract class LecheApi {
   Future<List<LecheModelo>> getLeche(@Header("Authorization") String token);
 
   @POST("/asis/leche/crear")
-  Future<LecheModelo> crearLeche(
+  Future<LecheModelo> createLeche(
       @Header("Authorization") String token, @Body() LecheModelo leche);
 
   @GET("/asis/leche/buscar/{id}")

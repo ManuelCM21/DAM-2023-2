@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-part of 'leche_api.dart';
+
+part of 'asistenciax_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -7,100 +8,75 @@ part of 'leche_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _LecheApi implements LecheApi {
-  _LecheApi(
+class _AsistenciaxApi implements AsistenciaxApi {
+  _AsistenciaxApi(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.203.1:8080';
+    baseUrl ??= 'http://172.22.5.34:8080';
   }
 
   final Dio _dio;
+
   String? baseUrl;
 
   @override
-  Future<List<LecheModelo>> getLeche(String token) async {
+  Future<List<AsistenciaxRespModelo>> getAsistenciapa(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<LecheModelo>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<AsistenciaxRespModelo>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/asis/leche/list',
+              '/asis/asistenciax/list',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => LecheModelo.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) =>
+            AsistenciaxRespModelo.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<LecheModelo> createLeche(
+  Future<AsistenciaxModelo> createAsistenciapa(
     String token,
-    LecheModelo leche,
+    AsistenciaxModelo asistenciapa,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    _data.addAll(leche.toJson());
+    _data.addAll(asistenciapa.toJson());
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<LecheModelo>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<AsistenciaxModelo>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/asis/leche/crear',
+              '/asis/asistenciax/crear',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LecheModelo.fromJson(_result.data!);
+    final value = AsistenciaxModelo.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<LecheModelo> findLeche(
-    String token,
-    int id,
-  ) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<LecheModelo>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/asis/leche/buscar/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LecheModelo.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<GenericModelo> deleteLeche(
+  Future<GenericModelo> deleteAsistenciapa(
     String token,
     int id,
   ) async {
@@ -117,7 +93,7 @@ class _LecheApi implements LecheApi {
     )
             .compose(
               _dio.options,
-              '/asis/leche/eliminar/${id}',
+              '/asis/asistenciax/eliminar/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -127,31 +103,31 @@ class _LecheApi implements LecheApi {
   }
 
   @override
-  Future<LecheModelo> updateLeche(
+  Future<AsistenciaxModelo> updateAsistenciapa(
     String token,
     int id,
-    LecheModelo leche,
+    AsistenciaxModelo asistenciapa,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    _data.addAll(leche.toJson());
+    _data.addAll(asistenciapa.toJson());
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<LecheModelo>(Options(
-      method: 'PUT',
+        .fetch<Map<String, dynamic>>(_setStreamType<AsistenciaxModelo>(Options(
+      method: 'PATCH',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/asis/leche/editar/${id}',
+              '/asis/asistenciax/editar/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LecheModelo.fromJson(_result.data!);
+    final value = AsistenciaxModelo.fromJson(_result.data!);
     return value;
   }
 

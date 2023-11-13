@@ -363,17 +363,21 @@ class _ActividadFormEditState extends State<ActividadFormEdit> {
     if (!hasPermission) {
       return;
     }
-    Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best,
-        forceAndroidLocationManager: true)
-        .then((Position position) {
-      setState(() {
-        currentPosition = position;
-        //getCurrentLocationAddress();
+    if (mounted){
+      Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best,
+          forceAndroidLocationManager: true)
+          .then((Position position) {
+        if(mounted){
+          setState(() {
+            currentPosition = position;
+            //getCurrentLocationAddress();
+          });
+        }
+      }).catchError((e) {
+        print(e);
       });
-    }).catchError((e) {
-      print(e);
-    });
+    }
   }
 
 }
