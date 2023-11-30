@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
                       expands: true,
                       maxLines: null,
                       decoration: const InputDecoration(
-                        hintText: 'content',
+                        hintText: 'Contenido',
                       ),
                     ),
                   ),
@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                     }
                   },
                   child: const Text(
-                    'send',
+                    'Enviar',
                     style: TextStyle(
                       fontSize: 20,
                     ),
